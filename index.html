@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Serviços Pro</title>
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiR2VzdMOjbyBkZSBTZXJ2acOnb3MgUHJvIiwic2hvcnRfbmFtZSI6IlNlcnZpw6dvcyIsImRlc2NyaXB0aW9uIjoiQXBwIGRlIGdlc3TDo28gZGUgc2VydmnDp29zIHByb2Zpc3Npb25hbCIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMGYxNDI5IiwidGhlbWVfY29sb3IiOiIjMzMzNmZmIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJeU5ESWlJR2hsYVdkb2REMGlNalF5SWlCMmFXVjNRbTk0UFNJd0lEQWdNalF5SURJME1pSStQSEJoZEdnZ1pEMGlUVEV5TVNBek5TNDFZekV1TWkwdU56Y3hMVEU0TXpBdE5qSXVOek00U0RneE55NDFNVEkxV1RaME1UZzRTRGd5TlM0NE56Y3pRVGR6ZkRFM0xqUTNNRFY0TVRGbE56VXhNalJvZVM1Mk1UTTJOeUlnWm1sc2JEMGlJek16TXpabVppSStQQzl3WVhSb1BpQThMM04yWno0PSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
+    <meta name="theme-color" content="#3336ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Serviços Pro">
+    
+    <style>
+        :root {
+            --primary: #3336ff;
+            --primary-dark: #2d31e6;
+            --secondary: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #22c55e;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --paid-bg: #dcfce7;
+            --paid-border: #22c55e;
+            --paid-text: #15803d;
+            --unpaid-bg: #fef3c7;
+            --unpaid-border: #f59e0b;
+            --unpaid-text: #d97706;
+            --pending-bg: #dbeafe;
+            --pending-border: #3b82f6;
+            --pending-text: #1d4ed8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        .app-container {
+            max-width: 428px;
+            margin: 0 auto;
+            background: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 50px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), #8b5cf6, #ec4899);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .connection-status {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--danger);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+            z-index: 2;
+        }
+
+        .connection-status.connected {
+            background: var(--success);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+        }
+
+        .connection-status.connecting {
+            background: var(--warning);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 0.7; 
+                transform: scale(1.1);
+            }
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: white;
+            border-bottom: 2px solid var(--gray-100);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 18px 12px;
+            text-align: center;
+            background: none;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-tab:hover {
+            color: var(--primary);
+            background: rgba(51, 54, 255, 0.05);
+        }
+
+        .nav-tab.active {
+            color: var(--primary);
+            background: rgba(51, 54, 255, 0.1);
+        }
+
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+            border-radius: 2px 2px 0 0;
+        }
+
+        .content {
+            padding: 24px 20px;
+            min-height: calc(100vh - 280px);
+            background: var(--gray-50);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .service-card.paid {
+            border-color: var(--paid-border);
+            background: linear-gradient(135deg, white 0%, var(--paid-bg) 100%);
+        }
+
+        .service-card.paid::before {
+            content: '✓';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            background: var(--paid-border);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+        }
+
+        .service-card.unpaid {
+            border-color: var(--unpaid-border);
+            background: linear-gradient(135deg, white 0%, var(--unpaid-bg) 100%);
+        }
+
+        .service-card.unpaid::before {
+            content: '€';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            background: var(--unpaid-border);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-4px);
+            }
+            60% {
+                transform: translateY(-2px);
+            }
+        }
+
+        .service-card.pending {
+            border-color: var(--pending-border);
+            background: linear-gradient(135deg, white 0%, var(--pending-bg) 100%);
+        }
+
+        .service-card.pending::before {
+            content: '⏱';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            background: var(--pending-border);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding-right: 40px;
+        }
+
+        .service-date {
+            font-weight: 700;
+            color: var(--gray-800);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-date::before {
+            content: '📅';
+            font-size: 16px;
+        }
+
+        .service-price {
+            background: linear-gradient(135deg, var(--secondary), #059669);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .service-price::before {
+            content: '💰';
+            font-size: 14px;
+        }
+
+        .service-details {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .service-detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 15px;
+            color: var(--gray-600);
+            gap: 12px;
+        }
+
+        .service-detail-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .service-detail-item strong {
+            color: var(--gray-800);
+            font-weight: 600;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(51, 54, 255, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #16a34a);
+            color: white;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--gray-600);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--danger), #dc2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+
+        .floating-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(51, 54, 255, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 12px 35px rgba(51, 54, 255, 0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            width: 100%;
+            max-width: 420px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        .modal-header {
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--gray-400);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-btn:hover {
+            color: var(--gray-600);
+            background: var(--gray-100);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: var(--gray-50);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(51, 54, 255, 0.1);
+        }
+
+        .textarea {
+            min-height: 140px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            border: 2px solid var(--gray-100);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .summary-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), #8b5cf6);
+        }
+
+        .summary-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .summary-label {
+            font-size: 13px;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--gray-200);
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message {
+            position: fixed;
+            top: 24px;
+            left: 20px;
+            right: 20px;
+            max-width: 388px;
+            margin: 0 auto;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            z-index: 3000;
+            animation: slideDown 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        @keyframes slideDown {
+            from { 
+                transform: translateY(-100%) scale(0.95); 
+                opacity: 0; 
+            }
+            to { 
+                transform: translateY(0) scale(1); 
+                opacity: 1; 
+            }
+        }
+
+        .message.success {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            color: #065f46;
+            border: 2px solid #22c55e;
+        }
+
+        .message.error {
+            background: linear-gradient(135deg, #fee2e2, #fca5a5);
+            color: #991b1b;
+            border: 2px solid #ef4444;
+        }
+
+        .message.warning {
+            background: linear-gradient(135deg, #fef3c7, #fcd34d);
+            color: #92400e;
+            border: 2px solid #f59e0b;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray-500);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--gray-700);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 12px;
+        }
+
+        .status-pending {
+            background: var(--pending-bg);
+            color: var(--pending-text);
+            border: 2px solid var(--pending-border);
+        }
+
+        .status-completed {
+            background: var(--paid-bg);
+            color: var(--paid-text);
+            border: 2px solid var(--paid-border);
+        }
+
+        .status-paid {
+            background: var(--paid-bg);
+            color: var(--paid-text);
+            border: 2px solid var(--paid-border);
+        }
+
+        .status-unpaid {
+            background: var(--unpaid-bg);
+            color: var(--unpaid-text);
+            border: 2px solid var(--unpaid-border);
+        }
+
+        .debug-panel {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            font-size: 12px;
+            max-width: 220px;
+            display: none;
+            border: 2px solid var(--gray-200);
+        }
+
+        .debug-panel.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        .debug-toggle {
+            position: fixed;
+            bottom: 100px;
+            left: 24px;
+            background: var(--gray-700);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .debug-toggle:hover {
+            background: var(--gray-800);
+            transform: translateY(-2px);
+        }
+
+        .month-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            border: 2px solid var(--gray-100);
+        }
+
+        .month-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .month-item:hover {
+            transform: translateX(4px);
+        }
+
+        .month-item.pending {
+            background: var(--pending-bg);
+            color: var(--pending-text);
+        }
+
+        .month-item.completed {
+            background: var(--paid-bg);
+            color: var(--paid-text);
+        }
+
+        @media (max-width: 640px) {
+            .summary-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .service-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .floating-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <div class="connection-status" id="connectionStatus" title="Status da conexão"></div>
+            <div class="header-content">
+                <h1>Gestão de Serviços Pro</h1>
+                <p>Controle total dos seus serviços</p>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="pendentes">
+                Pendentes
+            </button>
+            <button class="nav-tab" data-tab="realizados">
+                Realizados
+            </button>
+            <button class="nav-tab" data-tab="resumo">
+                Resumo
+            </button>
+        </nav>
+
+        <main class="content">
+            <div id="pendentes" class="tab-content active">
+                <div id="pendentes-list">
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <div class="loading"></div>
+                        <p style="margin-top: 16px; font-weight: 500;">Carregando serviços...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="realizados" class="tab-content">
+                <div id="realizados-list"></div>
+            </div>
+
+            <div id="resumo" class="tab-content">
+                <div id="resumo-content"></div>
+            </div>
+        </main>
+
+        <button class="floating-btn" onclick="showAddModal()" title="Adicionar novo serviço">+</button>
+        <button class="debug-toggle" onclick="toggleDebug()">Debug</button>
+    </div>
+
+    <div id="debugPanel" class="debug-panel">
+        <div style="font-weight: 600; margin-bottom: 8px;">🔧 Debug Info</div>
+        <div><strong>Backend:</strong></div>
+        <div id="debugBackend" style="font-size: 10px; word-break: break-all;">Verificando...</div>
+        <div><strong>Última tentativa:</strong></div>
+        <div id="debugLastTry">-</div>
+        <div><strong>Erro:</strong></div>
+        <div id="debugError" style="color: var(--danger);">-</div>
+    </div>
+
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="hideAddModal()">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">✨ Adicionar Serviço</h2>
+                <p style="color: var(--gray-500); font-size: 14px;">Cole a mensagem do WhatsApp abaixo</p>
+            </div>
+            <form id="addServiceForm">
+                <div class="form-group">
+                    <label class="form-label" for="mensagem">📱 Mensagem do WhatsApp</label>
+                    <textarea id="mensagem" class="form-control textarea" 
+                              placeholder="Cole aqui a mensagem completa do WhatsApp com todos os detalhes do serviço..."
+                              required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
+                    ✨ Adicionar Serviço
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="hideSettingsModal()">&times;</button>
+            <div class="modal-header">
+                <h2 class="modal-title">⚙️ Configurações</h2>
+                <p style="color: var(--gray-500); font-size: 14px;">Configure a conexão com o backend</p>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="backendUrl">🌐 URL do Backend</label>
+                <input type="url" id="backendUrl" class="form-control" 
+                       placeholder="https://seu-backend.com">
+            </div>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn btn-primary" onclick="saveSettings()">💾 Salvar</button>
+                <button class="btn btn-secondary" onclick="testConnection()">🔍 Testar</button>
+                <button class="btn btn-danger" onclick="resetSettings()">🔄 Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const DEFAULT_API_BASE = 'https://servicos-backend-3jyq.onrender.com';
+        let API_BASE = localStorage.getItem('api_base') || DEFAULT_API_BASE;
+        
+        // Global state
+        let currentTab = 'pendentes';
+        let connectionStatus = 'disconnected';
+        let debugMode = false;
+        let lastError = null;
+        
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            checkConnection();
+            loadData();
+        });
+
+        function setupEventListeners() {
+            // Tab navigation
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.dataset.tab;
+                    switchTab(tabName);
+                });
+            });
+
+            // Form submission
+            document.getElementById('addServiceForm').addEventListener('submit', handleAddService);
+
+            // Modal close events
+            document.getElementById('addModal').addEventListener('click', function(e) {
+                if (e.target === e.currentTarget) hideAddModal();
+            });
+
+            document.getElementById('settingsModal').addEventListener('click', function(e) {
+                if (e.target === e.currentTarget) hideSettingsModal();
+            });
+
+            // ESC key to close modals
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    hideAddModal();
+                    hideSettingsModal();
+                }
+            });
+
+            // Double click header to show settings
+            document.querySelector('.header').addEventListener('dblclick', showSettingsModal);
+        }
+
+        function updateConnectionStatus(status) {
+            connectionStatus = status;
+            const statusEl = document.getElementById('connectionStatus');
+            statusEl.className = `connection-status ${status}`;
+            
+            const titles = {
+                connected: '🟢 Conectado ao backend',
+                connecting: '🟡 Conectando...',
+                disconnected: '🔴 Desconectado do backend'
+            };
+            statusEl.title = titles[status] || 'Status desconhecido';
+
+            updateDebugPanel();
+        }
+
+        function updateDebugPanel() {
+            if (!debugMode) return;
+            
+            document.getElementById('debugBackend').textContent = API_BASE;
+            document.getElementById('debugLastTry').textContent = new Date().toLocaleTimeString();
+            document.getElementById('debugError').textContent = lastError || '-';
+        }
+
+        function toggleDebug() {
+            debugMode = !debugMode;
+            document.getElementById('debugPanel').classList.toggle('show', debugMode);
+            if (debugMode) updateDebugPanel();
+        }
+
+        async function checkConnection() {
+            updateConnectionStatus('connecting');
+            
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
+                
+                const response = await fetch(`${API_BASE}/health`, {
+                    method: 'GET',
+                    signal: controller.signal,
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (response.ok) {
+                    updateConnectionStatus('connected');
+                    lastError = null;
+                    return true;
+                } else {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                updateConnectionStatus('disconnected');
+                lastError = error.message;
+                console.error('Connection check failed:', error);
+                
+                if (error.name === 'AbortError') {
+                    showMessage('⏱️ Timeout na conexão com o backend', 'warning');
+                } else {
+                    showMessage(`❌ Erro de conexão: ${error.message}`, 'error');
+                }
+                
+                return false;
+            }
+        }
+
+        function switchTab(tabName) {
+            // Update nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+
+            currentTab = tabName;
+            loadData();
+        }
+
+        function loadData() {
+            switch(currentTab) {
+                case 'pendentes':
+                    loadPendentes();
+                    break;
+                case 'realizados':
+                    loadRealizados();
+                    break;
+                case 'resumo':
+                    loadResumo();
+                    break;
+            }
+        }
+
+        async function apiCall(endpoint, options = {}) {
+            try {
+                updateConnectionStatus('connecting');
+                
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+                
+                const response = await fetch(`${API_BASE}${endpoint}`, {
+                    signal: controller.signal,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${errorText || response.statusText}`);
+                }
+                
+                updateConnectionStatus('connected');
+                lastError = null;
+                
+                const data = await response.json();
+                return data;
+                
+            } catch (error) {
+                updateConnectionStatus('disconnected');
+                lastError = error.message;
+                console.error('API Error:', error);
+                
+                if (error.name === 'AbortError') {
+                    throw new Error('Timeout na requisição');
+                } else if (error.message.includes('Failed to fetch')) {
+                    throw new Error('Não foi possível conectar ao servidor');
+                } else {
+                    throw error;
+                }
+            }
+        }
+
+        async function loadPendentes() {
+            const listElement = document.getElementById('pendentes-list');
+            listElement.innerHTML = '<div style="text-align: center; padding: 40px 20px;"><div class="loading"></div><p style="margin-top: 16px; font-weight: 500;">Carregando serviços...</p></div>';
+            
+            try {
+                const servicos = await apiCall('/pendentes');
+                renderServicos(servicos, 'pendentes-list', false);
+            } catch (error) {
+                listElement.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+                        <h3>Erro ao carregar</h3>
+                        <p>Não foi possível carregar os serviços pendentes</p>
+                        <p style="font-size: 12px; margin-top: 8px; color: var(--danger);">${error.message}</p>
+                        <button class="btn btn-primary" onclick="loadPendentes()" style="margin-top: 16px;">
+                            🔄 Tentar novamente
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        async function loadRealizados() {
+            const listElement = document.getElementById('realizados-list');
+            listElement.innerHTML = '<div style="text-align: center; padding: 40px 20px;"><div class="loading"></div><p style="margin-top: 16px; font-weight: 500;">Carregando serviços...</p></div>';
+            
+            try {
+                const servicos = await apiCall('/realizados');
+                renderServicos(servicos, 'realizados-list', true);
+            } catch (error) {
+                listElement.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+                        <h3>Erro ao carregar</h3>
+                        <p>Não foi possível carregar os serviços realizados</p>
+                        <p style="font-size: 12px; margin-top: 8px; color: var(--danger);">${error.message}</p>
+                        <button class="btn btn-primary" onclick="loadRealizados()" style="margin-top: 16px;">
+                            🔄 Tentar novamente
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        async function loadResumo() {
+            const container = document.getElementById('resumo-content');
+            container.innerHTML = '<div style="text-align: center; padding: 40px 20px;"><div class="loading"></div><p style="margin-top: 16px; font-weight: 500;">Carregando resumo...</p></div>';
+            
+            try {
+                const resumo = await apiCall('/resumo');
+                renderResumo(resumo);
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">⚠️</div>
+                        <h3>Erro ao carregar</h3>
+                        <p>Não foi possível carregar o resumo</p>
+                        <p style="font-size: 12px; margin-top: 8px; color: var(--danger);">${error.message}</p>
+                        <button class="btn btn-primary" onclick="loadResumo()" style="margin-top: 16px;">
+                            🔄 Tentar novamente
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function renderServicos(servicos, containerId, isRealizado) {
+            const container = document.getElementById(containerId);
+            
+            if (!servicos || servicos.length === 0) {
+                const emptyIcon = isRealizado ? '✅' : '⏳';
+                const emptyTitle = isRealizado ? 'Nenhum serviço realizado' : 'Nenhum serviço pendente';
+                const emptyDesc = isRealizado ? 'Os serviços realizados aparecerão aqui' : 'Os serviços pendentes aparecerão aqui';
+                
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">${emptyIcon}</div>
+                        <h3>${emptyTitle}</h3>
+                        <p>${emptyDesc}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const servicosHtml = servicos.map(servico => {
+                let cardClass = 'service-card';
+                let statusBadge = '';
+                
+                if (isRealizado) {
+                    if (servico.pago) {
+                        cardClass += ' paid';
+                        statusBadge = '<span class="status-badge status-paid">✅ Pago</span>';
+                    } else {
+                        cardClass += ' unpaid';
+                        statusBadge = '<span class="status-badge status-unpaid">💰 Não Pago</span>';
+                    }
+                } else {
+                    cardClass += ' pending';
+                    statusBadge = '<span class="status-badge status-pending">⏱️ Pendente</span>';
+                }
+
+                return `
+                    <div class="${cardClass}">
+                        <div class="service-header">
+                            <div class="service-date">${servico.data}</div>
+                            <div class="service-price">€${servico.preco.toFixed(2)}</div>
+                        </div>
+                        <div class="service-details">
+                            <div class="service-detail-item">
+                                <div class="service-detail-icon">📍</div>
+                                <div><strong>Local:</strong> ${servico.local}</div>
+                            </div>
+                            <div class="service-detail-item">
+                                <div class="service-detail-icon">🕐</div>
+                                <div><strong>Hora:</strong> ${servico.hora}</div>
+                            </div>
+                            <div class="service-detail-item">
+                                <div class="service-detail-icon">🛠️</div>
+                                <div><strong>Serviços:</strong> ${Array.isArray(servico.subcategorias) ? servico.subcategorias.join(', ') : servico.subcategorias}</div>
+                            </div>
+                            ${statusBadge}
+                        </div>
+                        <div class="service-actions">
+                            ${!isRealizado ? `
+                                <button class="btn btn-primary" onclick="marcarRealizado(${servico.id})">
+                                    ✅ Marcar Realizado
+                                </button>
+                            ` : `
+                                ${!servico.pago ? `
+                                    <button class="btn btn-success" onclick="marcarPago(${servico.id})">
+                                        💰 Marcar Pago
+                                    </button>
+                                ` : `
+                                    <button class="btn btn-secondary" disabled>
+                                        ✅ Já Pago
+                                    </button>
+                                `}
+                            `}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = servicosHtml;
+        }
+
+        function renderResumo(resumo) {
+            const container = document.getElementById('resumo-content');
+            
+            const resumoHtml = `
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <div class="summary-value">⏳ €${resumo.total_pendentes.toFixed(2)}</div>
+                        <div class="summary-label">Pendentes</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">✅ €${resumo.total_realizados.toFixed(2)}</div>
+                        <div class="summary-label">Realizados</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">💰 €${resumo.total_pagos.toFixed(2)}</div>
+                        <div class="summary-label">Pagos</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-value">💸 €${resumo.total_por_receber.toFixed(2)}</div>
+                        <div class="summary-label">Por Receber</div>
+                    </div>
+                </div>
+                
+                <div class="month-summary">
+                    <h3 style="margin-bottom: 20px; color: var(--gray-800); text-align: center; font-size: 22px;">
+                        💎 Total Geral: €${resumo.total_geral.toFixed(2)}
+                    </h3>
+                    
+                    ${Object.keys(resumo.pendentes_por_mes || {}).length > 0 ? `
+                        <h4 style="margin: 24px 0 16px; color: var(--gray-700); font-size: 18px;">⏳ Pendentes por Mês</h4>
+                        ${Object.entries(resumo.pendentes_por_mes).map(([mes, valor]) => `
+                            <div class="month-item pending">
+                                <span>${mes}</span>
+                                <strong>€${valor.toFixed(2)}</strong>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                    
+                    ${Object.keys(resumo.realizados_por_mes || {}).length > 0 ? `
+                        <h4 style="margin: 24px 0 16px; color: var(--gray-700); font-size: 18px;">✅ Realizados por Mês</h4>
+                        ${Object.entries(resumo.realizados_por_mes).map(([mes, valor]) => `
+                            <div class="month-item completed">
+                                <span>${mes}</span>
+                                <strong>€${valor.toFixed(2)}</strong>
+                            </div>
+                        `).join('')}
+                    ` : ''}
+                </div>
+            `;
+
+            container.innerHTML = resumoHtml;
+        }
+
+        async function handleAddService(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const mensagem = document.getElementById('mensagem').value;
+            
+            if (!mensagem.trim()) {
+                showMessage('📝 Por favor, insira a mensagem do WhatsApp', 'error');
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> Adicionando...';
+            
+            try {
+                await apiCall('/adicionar_servico', {
+                    method: 'POST',
+                    body: JSON.stringify({ mensagem: mensagem })
+                });
+                
+                showMessage('✨ Serviço adicionado com sucesso!', 'success');
+                hideAddModal();
+                
+                if (currentTab === 'pendentes') {
+                    loadPendentes();
+                }
+            } catch (error) {
+                showMessage(`❌ Erro ao adicionar serviço: ${error.message}`, 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✨ Adicionar Serviço';
+            }
+        }
+
+        async function marcarRealizado(id) {
+            try {
+                await apiCall(`/marcar_como_realizado/${id}`, {
+                    method: 'POST'
+                });
+                
+                showMessage('✅ Serviço marcado como realizado!', 'success');
+                loadPendentes();
+            } catch (error) {
+                showMessage(`❌ Erro ao marcar como realizado: ${error.message}`, 'error');
+            }
+        }
+
+        async function marcarPago(id) {
+            try {
+                await apiCall(`/marcar_como_pago/${id}`, {
+                    method: 'POST'
+                });
+                
+                showMessage('💰 Serviço marcado como pago!', 'success');
+                loadRealizados();
+            } catch (error) {
+                showMessage(`❌ Erro ao marcar como pago: ${error.message}`, 'error');
+            }
+        }
+
+        function showAddModal() {
+            document.getElementById('addModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => document.getElementById('mensagem').focus(), 300);
+        }
+
+        function hideAddModal() {
+            document.getElementById('addModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+            document.getElementById('mensagem').value = '';
+        }
+
+        function showSettingsModal() {
+            document.getElementById('backendUrl').value = API_BASE;
+            document.getElementById('settingsModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideSettingsModal() {
+            document.getElementById('settingsModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function saveSettings() {
+            const newUrl = document.getElementById('backendUrl').value.trim();
+            if (newUrl) {
+                API_BASE = newUrl.replace(/\/$/, '');
+                localStorage.setItem('api_base', API_BASE);
+                showMessage('💾 Configurações salvas!', 'success');
+                hideSettingsModal();
+                checkConnection();
+            }
+        }
+
+        async function testConnection() {
+            const newUrl = document.getElementById('backendUrl').value.trim();
+            if (!newUrl) {
+                showMessage('🔍 Digite uma URL válida', 'error');
+                return;
+            }
+            
+            const oldUrl = API_BASE;
+            API_BASE = newUrl.replace(/\/$/, '');
+            
+            const connected = await checkConnection();
+            if (connected) {
+                showMessage('🟢 Conexão bem-sucedida!', 'success');
+            } else {
+                API_BASE = oldUrl;
+                showMessage('🔴 Falha na conexão', 'error');
+            }
+        }
+
+        function resetSettings() {
+            API_BASE = DEFAULT_API_BASE;
+            localStorage.removeItem('api_base');
+            document.getElementById('backendUrl').value = API_BASE;
+            showMessage('🔄 Configurações resetadas!', 'success');
+            checkConnection();
+        }
+
+        function showMessage(message, type) {
+            const existingMessages = document.querySelectorAll('.message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = message;
+            
+            document.body.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+
+        // Auto-refresh connection status
+        setInterval(checkConnection, 60000);
+
+        // PWA Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZXZlbnQgPT4ge30pOw==')
+                    .catch(err => console.log('SW registration failed'));
+            });
+        }
+    </script>
+</body>
+</html>
