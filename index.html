@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Serviços Pro</title>
-    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiR2VzdMOjbyBkZSBTZXJ2acOnb3MgUHJvIiwic2hvcnRfbmFtZSI6IlNlcnZpw6dvcyIsImRlc2NyaXB0aW9uIjoiQXBwIGRlIGdlc3TDo28gZGUgc2VydmnDp29zIHByb2Zpc3Npb25hbCIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMGYxNDI5IiwidGhlbWVfY29sb3IiOiIjMzMzNmZmIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJeU5ESWlJR2hsYVdkb2REMGlNalF5SWlCMmFXVjNRbTk0UFNJd0lEQWdNalF5SURJME1pSStQSEJoZEdnZ1pEMGlUVEV5TVNBek5TNDFZekV1TWkwdU56Y3hMVEU0TXpBdE5qSXVOek00U0RneE55NDFNVEkxV1RaME1UZzRTRGd5TlM0NE56Y3pRVGR6ZkRFM0xqUTNNRFY0TVRGbE56VXhNalJvZVM1Mk1UTTJOeUlnWm1sc2JEMGlJek16TXpabVppSStQQzl3WVhSb1BpQThMM04yWno0PSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
+    <link rel="manifest"
+        href="data:application/json;base64,eyJuYW1lIjoiR2VzdMOjbyBkZSBTZXJ2acOnb3MgUHJvIiwic2hvcnRfbmFtZSI6IlNlcnZpw6dvcyIsImRlc2NyaXB0aW9uIjoiQXBwIGRlIGdlc3TDo28gZGUgc2VydmnDp29zIHByb2Zpc3Npb25hbCIsInN0YXJ0X3VybCI6Ii8iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjMGYxNDI5IiwidGhlbWVfY29sb3IiOiIjMzMzNmZmIiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJeU5ESWlJR2hsYVdkb2REMGlNalF5SWlCMmFXVjNRbTk0UFNJd0lEQWdNalF5SURJME1pSStQSEJoZEdnZ1pEMGlUVEV5TVNBek5TNDFZekV1TWkwdU56Y3hMVEU0TXpBdE5qSXVOek00U0RneE55NDFNVEkxV1RaME1UZzRTRGd5TlM0NE56Y3pRVGR6ZkRFM0xqUTNNRFY0TVRGbE56VXhNalJvZVM1Mk1UTTJOeUlnWm1sc2JEMGlJek16TXpabVppSStQQzl3WVhSb1BpQThMM04yWno0PSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9zdmcreG1sIn1dfQ==">
     <meta name="theme-color" content="#3336ff">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Serviços Pro">
-    
+
     <style>
         :root {
             --primary: #3336ff;
@@ -58,7 +60,7 @@
             margin: 0 auto;
             background: #ffffff;
             min-height: 100vh;
-            box-shadow: 0 0 50px rgba(0,0,0,0.15);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
             position: relative;
             overflow: hidden;
         }
@@ -92,7 +94,7 @@
             font-size: 28px;
             font-weight: 800;
             margin-bottom: 6px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .header p {
@@ -126,12 +128,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { 
-                opacity: 1; 
+
+            0%,
+            100% {
+                opacity: 1;
                 transform: scale(1);
             }
-            50% { 
-                opacity: 0.7; 
+
+            50% {
+                opacity: 0.7;
                 transform: scale(1.1);
             }
         }
@@ -143,7 +148,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-tab {
@@ -199,13 +204,14 @@
         }
 
         @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px); 
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -214,7 +220,7 @@
             border-radius: 16px;
             padding: 24px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border: 2px solid transparent;
             transition: all 0.3s ease;
             position: relative;
@@ -223,7 +229,7 @@
 
         .service-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
         }
 
         .service-card.paid {
@@ -274,12 +280,19 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
                 transform: translateY(0);
             }
+
             40% {
                 transform: translateY(-4px);
             }
+
             60% {
                 transform: translateY(-2px);
             }
@@ -407,7 +420,7 @@
 
         .btn:hover:not(:disabled) {
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .btn-primary {
@@ -425,7 +438,7 @@
         .btn-secondary {
             background: var(--gray-100);
             color: var(--gray-600);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn-danger {
@@ -463,7 +476,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 2000;
             padding: 20px;
             backdrop-filter: blur(5px);
@@ -477,8 +490,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
@@ -490,18 +508,19 @@
             max-height: 85vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             animation: slideUp 0.3s ease;
         }
 
         @keyframes slideUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px) scale(0.95); 
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
             }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -595,7 +614,7 @@
 
         .summary-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .summary-card::before {
@@ -638,8 +657,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         .message {
@@ -654,17 +678,18 @@
             font-weight: 600;
             z-index: 3000;
             animation: slideDown 0.4s ease;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         @keyframes slideDown {
-            from { 
-                transform: translateY(-100%) scale(0.95); 
-                opacity: 0; 
+            from {
+                transform: translateY(-100%) scale(0.95);
+                opacity: 0;
             }
-            to { 
-                transform: translateY(0) scale(1); 
-                opacity: 1; 
+
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
             }
         }
 
@@ -749,7 +774,7 @@
             background: white;
             border-radius: 12px;
             padding: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             font-size: 12px;
             max-width: 220px;
             display: none;
@@ -819,7 +844,7 @@
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
-            
+
             .service-actions {
                 flex-direction: column;
                 gap: 12px;
@@ -839,7 +864,10 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+
+            *,
+            *::before,
+            *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
@@ -847,6 +875,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="app-container">
         <header class="header">
@@ -912,9 +941,9 @@
             <form id="addServiceForm">
                 <div class="form-group">
                     <label class="form-label" for="mensagem">📱 Mensagem do WhatsApp</label>
-                    <textarea id="mensagem" class="form-control textarea" 
-                              placeholder="Cole aqui a mensagem completa do WhatsApp com todos os detalhes do serviço..."
-                              required></textarea>
+                    <textarea id="mensagem" class="form-control textarea"
+                        placeholder="Cole aqui a mensagem completa do WhatsApp com todos os detalhes do serviço..."
+                        required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">
                     ✨ Adicionar Serviço
@@ -932,8 +961,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label" for="backendUrl">🌐 URL do Backend</label>
-                <input type="url" id="backendUrl" class="form-control" 
-                       placeholder="https://seu-backend.com">
+                <input type="url" id="backendUrl" class="form-control" placeholder="https://seu-backend.com">
             </div>
             <div style="display: flex; gap: 12px;">
                 <button class="btn btn-primary" onclick="saveSettings()">💾 Salvar</button>
@@ -947,15 +975,15 @@
         // Configuration
         const DEFAULT_API_BASE = 'https://servicos-backend-3jyq.onrender.com';
         let API_BASE = localStorage.getItem('api_base') || DEFAULT_API_BASE;
-        
+
         // Global state
         let currentTab = 'pendentes';
         let connectionStatus = 'disconnected';
         let debugMode = false;
         let lastError = null;
-        
+
         // Initialize app
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             setupEventListeners();
             checkConnection();
             loadData();
@@ -964,7 +992,7 @@
         function setupEventListeners() {
             // Tab navigation
             document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.addEventListener('click', function() {
+                tab.addEventListener('click', function () {
                     const tabName = this.dataset.tab;
                     switchTab(tabName);
                 });
@@ -974,16 +1002,16 @@
             document.getElementById('addServiceForm').addEventListener('submit', handleAddService);
 
             // Modal close events
-            document.getElementById('addModal').addEventListener('click', function(e) {
+            document.getElementById('addModal').addEventListener('click', function (e) {
                 if (e.target === e.currentTarget) hideAddModal();
             });
 
-            document.getElementById('settingsModal').addEventListener('click', function(e) {
+            document.getElementById('settingsModal').addEventListener('click', function (e) {
                 if (e.target === e.currentTarget) hideSettingsModal();
             });
 
             // ESC key to close modals
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
                     hideAddModal();
                     hideSettingsModal();
@@ -998,7 +1026,7 @@
             connectionStatus = status;
             const statusEl = document.getElementById('connectionStatus');
             statusEl.className = `connection-status ${status}`;
-            
+
             const titles = {
                 connected: '🟢 Conectado ao backend',
                 connecting: '🟡 Conectando...',
@@ -1011,7 +1039,7 @@
 
         function updateDebugPanel() {
             if (!debugMode) return;
-            
+
             document.getElementById('debugBackend').textContent = API_BASE;
             document.getElementById('debugLastTry').textContent = new Date().toLocaleTimeString();
             document.getElementById('debugError').textContent = lastError || '-';
@@ -1025,11 +1053,11 @@
 
         async function checkConnection() {
             updateConnectionStatus('connecting');
-            
+
             try {
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 10000);
-                
+
                 const response = await fetch(`${API_BASE}/health`, {
                     method: 'GET',
                     signal: controller.signal,
@@ -1037,9 +1065,9 @@
                         'Accept': 'application/json',
                     }
                 });
-                
+
                 clearTimeout(timeoutId);
-                
+
                 if (response.ok) {
                     updateConnectionStatus('connected');
                     lastError = null;
@@ -1051,13 +1079,13 @@
                 updateConnectionStatus('disconnected');
                 lastError = error.message;
                 console.error('Connection check failed:', error);
-                
+
                 if (error.name === 'AbortError') {
                     showMessage('⏱️ Timeout na conexão com o backend', 'warning');
                 } else {
                     showMessage(`❌ Erro de conexão: ${error.message}`, 'error');
                 }
-                
+
                 return false;
             }
         }
@@ -1080,7 +1108,7 @@
         }
 
         function loadData() {
-            switch(currentTab) {
+            switch (currentTab) {
                 case 'pendentes':
                     loadPendentes();
                     break;
@@ -1096,10 +1124,10 @@
         async function apiCall(endpoint, options = {}) {
             try {
                 updateConnectionStatus('connecting');
-                
+
                 const controller = new AbortController();
                 const timeoutId = setTimeout(() => controller.abort(), 30000);
-                
+
                 const response = await fetch(`${API_BASE}${endpoint}`, {
                     signal: controller.signal,
                     headers: {
@@ -1109,25 +1137,25 @@
                     },
                     ...options
                 });
-                
+
                 clearTimeout(timeoutId);
-                
+
                 if (!response.ok) {
                     const errorText = await response.text();
                     throw new Error(`HTTP ${response.status}: ${errorText || response.statusText}`);
                 }
-                
+
                 updateConnectionStatus('connected');
                 lastError = null;
-                
+
                 const data = await response.json();
                 return data;
-                
+
             } catch (error) {
                 updateConnectionStatus('disconnected');
                 lastError = error.message;
                 console.error('API Error:', error);
-                
+
                 if (error.name === 'AbortError') {
                     throw new Error('Timeout na requisição');
                 } else if (error.message.includes('Failed to fetch')) {
@@ -1141,7 +1169,7 @@
         async function loadPendentes() {
             const listElement = document.getElementById('pendentes-list');
             listElement.innerHTML = '<div style="text-align: center; padding: 40px 20px;"><div class="loading"></div><p style="margin-top: 16px; font-weight: 500;">Carregando serviços...</p></div>';
-            
+
             try {
                 const servicos = await apiCall('/pendentes');
                 renderServicos(servicos, 'pendentes-list', false);
@@ -1163,7 +1191,7 @@
         async function loadRealizados() {
             const listElement = document.getElementById('realizados-list');
             listElement.innerHTML = '<div style="text-align: center; padding: 40px 20px;"><div class="loading"></div><p style="margin-top: 16px; font-weight: 500;">Carregando serviços...</p></div>';
-            
+
             try {
                 const servicos = await apiCall('/realizados');
                 renderServicos(servicos, 'realizados-list', true);
@@ -1185,7 +1213,7 @@
         async function loadResumo() {
             const container = document.getElementById('resumo-content');
             container.innerHTML = '<div style="text-align: center; padding: 40px 20px;"><div class="loading"></div><p style="margin-top: 16px; font-weight: 500;">Carregando resumo...</p></div>';
-            
+
             try {
                 const resumo = await apiCall('/resumo');
                 renderResumo(resumo);
@@ -1206,12 +1234,12 @@
 
         function renderServicos(servicos, containerId, isRealizado) {
             const container = document.getElementById(containerId);
-            
+
             if (!servicos || servicos.length === 0) {
                 const emptyIcon = isRealizado ? '✅' : '⏳';
                 const emptyTitle = isRealizado ? 'Nenhum serviço realizado' : 'Nenhum serviço pendente';
                 const emptyDesc = isRealizado ? 'Os serviços realizados aparecerão aqui' : 'Os serviços pendentes aparecerão aqui';
-                
+
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="empty-icon">${emptyIcon}</div>
@@ -1225,7 +1253,7 @@
             const servicosHtml = servicos.map(servico => {
                 let cardClass = 'service-card';
                 let statusBadge = '';
-                
+
                 if (isRealizado) {
                     if (servico.pago) {
                         cardClass += ' paid';
@@ -1286,7 +1314,7 @@
 
         function renderResumo(resumo) {
             const container = document.getElementById('resumo-content');
-            
+
             const resumoHtml = `
                 <div class="summary-grid">
                     <div class="summary-card">
@@ -1339,27 +1367,27 @@
 
         async function handleAddService(e) {
             e.preventDefault();
-            
+
             const submitBtn = document.getElementById('submitBtn');
             const mensagem = document.getElementById('mensagem').value;
-            
+
             if (!mensagem.trim()) {
                 showMessage('📝 Por favor, insira a mensagem do WhatsApp', 'error');
                 return;
             }
-            
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<span class="loading"></span> Adicionando...';
-            
+
             try {
                 await apiCall('/adicionar_servico', {
                     method: 'POST',
                     body: JSON.stringify({ mensagem: mensagem })
                 });
-                
+
                 showMessage('✨ Serviço adicionado com sucesso!', 'success');
                 hideAddModal();
-                
+
                 if (currentTab === 'pendentes') {
                     loadPendentes();
                 }
@@ -1376,7 +1404,7 @@
                 await apiCall(`/marcar_como_realizado/${id}`, {
                     method: 'POST'
                 });
-                
+
                 showMessage('✅ Serviço marcado como realizado!', 'success');
                 loadPendentes();
             } catch (error) {
@@ -1389,7 +1417,7 @@
                 await apiCall(`/marcar_como_pago/${id}`, {
                     method: 'POST'
                 });
-                
+
                 showMessage('💰 Serviço marcado como pago!', 'success');
                 loadRealizados();
             } catch (error) {
@@ -1437,10 +1465,10 @@
                 showMessage('🔍 Digite uma URL válida', 'error');
                 return;
             }
-            
+
             const oldUrl = API_BASE;
             API_BASE = newUrl.replace(/\/$/, '');
-            
+
             const connected = await checkConnection();
             if (connected) {
                 showMessage('🟢 Conexão bem-sucedida!', 'success');
@@ -1461,13 +1489,13 @@
         function showMessage(message, type) {
             const existingMessages = document.querySelectorAll('.message');
             existingMessages.forEach(msg => msg.remove());
-            
+
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${type}`;
             messageDiv.textContent = message;
-            
+
             document.body.appendChild(messageDiv);
-            
+
             setTimeout(() => {
                 messageDiv.remove();
             }, 5000);
@@ -1479,10 +1507,12 @@
         // PWA Service Worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('data:application/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdpbnN0YWxsJywgZXZlbnQgPT4ge30pOw==')
-                    .catch(err => console.log('SW registration failed'));
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(() => console.log('Service Worker registrado com sucesso!'))
+                    .catch(err => console.log('Falha ao registrar Service Worker:', err));
             });
         }
     </script>
 </body>
+
 </html>
